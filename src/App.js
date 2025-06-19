@@ -17,6 +17,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import ProfileImage from './imgs/profileImg.jpg';
 import {TimelineItem} from "./components/TimelineItem";
+import {careerHistory} from "./utils/constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,32 +33,7 @@ function App() {
         },
     });
 
-    const careerHistory = [
-        {
-            year: "2021 - Present",
-            title: "Senior Full Stack Developer",
-            company: "Innovatech Solutions",
-            description: "Leading development of scalable web applications using the MERN stack and deploying on AWS."
-        },
-        {
-            year: "2019 - 2021",
-            title: "Mid-Level Software Engineer",
-            company: "Data Systems Corp",
-            description: "Developed and maintained backend services with Java and Spring Boot, contributing to a 20% increase in API performance."
-        },
-        {
-            year: "2017 - 2019",
-            title: "Junior Developer",
-            company: "Creative Web Agency",
-            description: "Built responsive and interactive user interfaces for client websites using React and Material-UI."
-        },
-        {
-            year: "2013 - 2017",
-            title: "B.Sc. in Computer Science",
-            company: "University of Technology",
-            description: "Graduated with First Class Honors, specializing in software engineering and database management."
-        }
-    ];
+
 
     const [anchorEl, setAnchorEl] = useState(null);
     const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
@@ -71,75 +47,61 @@ function App() {
         // Using gsap.context() is the key to making this work well with React
         const ctx = gsap.context(() => {
 
-            // Now, with the ref on a real element, this selector will work perfectly.
-            const icons = gsap.utils.toArray('.tech-icon');
-            const name = gsap.utils.toArray('.name-card');
-            const profilePic = gsap.utils.toArray('.profile-pic');
+            const entranceTl = gsap.timeline({
+                defaults: { duration: 0.8, ease: 'power3.out' }
+            });
 
-            // Set their initial state (before animation)
-            gsap.set(icons, { opacity: 0, x:1000, scale: 0 });
-            gsap.set(name,{opacity: 0, x:-1000, scale: 0.1});
-            gsap.set(icons, { opacity: 0, y:100, scale: 0 });
-
-
-            const tl = gsap.timeline({
+            // Use .from() for clean entrance animations
+            entranceTl
+                .from('.profile-pic', { // Animate profile pic first
+                    opacity: 0,
+                    scale: 0.5,
+                    y: -50
+                })
+                .from('.hero-text', { // Then the text
+                    opacity: 0,
+                    x: -100,
+                    stagger: 0.2 // Animate h3 then h5
+                }, "-=0.5") // Overlap with previous animation
+                .from('.tech-icon', { // Finally, the tech icons
+                    opacity: 0,
+                    x: 100,
+                    stagger: 0.1,
+                    ease: 'back.out(1.7)'
+                }, "-=0.5"); // Overlap again
+            const scrollTl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: timelineSection.current, // Use the ref as the trigger
-                    start: "top 60%", // Start animation when the top of the section hits 60% of the viewport
-                    end: "bottom 80%",
-                    // markers: true, // Uncomment for debugging
-                    toggleActions: "play none none none" // Play the animation once
+                    trigger: timelineSection.current,
+                    start: "top 70%",
+                    // Use "once: true" for a clean "play once and stick" animation
+                    once: true,
+                    // markers: true, // Uncomment to debug trigger points
                 }
             });
 
-            // 1. Animate the central line
-            tl.from(".timeline-line", {
-                scaleY: 0,
-                transformOrigin: 'top', // Animate from the top
-                duration: 1,
-                ease: 'power2.inOut'
-            });
-
-            // 2. Animate the dots and cards for each item
-            // We use a function-based value for x to slide left or right
-            tl.from(".timeline-item", {
-                opacity: 0,
-                y: 50,
-                stagger: 0.3, // Stagger each .timeline-item
-                duration: 0.8,
-                ease: 'power2.out'
-            }, "-=0.5"); // Overlap with the line animation for a smoother effect
-
-
-
-            gsap.to(icons, {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                duration: 0.5,
-                delay: 0.5,
-                stagger: 0.1,
-                ease: 'back.out(1.7)',
-            });
-
-
-            gsap.to(name, {
-                opacity: 1,
-                x: 0,
-                scale: 1,
-                duration:0.4,
-                delay: 0.5,
-                ease:'back.out(1.7)',
-            });
-
-            gsap.to(profilePic, {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration:0.4,
-                delay: 0.5,
-                ease:'back.out(1.7)',
-            });
+            scrollTl
+                .from(".timeline-line", {
+                    scaleY: 0,
+                    transformOrigin: 'top',
+                    duration: 1,
+                    ease: 'power2.inOut'
+                })
+                .from(".timeline-item .timeline-card, .timeline-item .timeline-dot", {
+                    opacity: 0,
+                    y: 50,
+                    stagger: 0.3,
+                    duration: 0.6,
+                    ease: 'power2.out'
+                }, "-=0.5")
+                // Only need one animation for all skill chips
+                .from(".skill-chip", {
+                    opacity: 0,
+                    y: 20,
+                    scale: 0.5,
+                    stagger: 0.05,
+                    duration: 0.3,
+                    ease: 'back.out(1.7)'
+                }, "-=0.3");
 
         }, main); // The context is scoped to our main ref
 
@@ -156,8 +118,7 @@ function App() {
                 <AppBar position="sticky">
                     {/* ... rest of your AppBar code ... */}
                     <Toolbar sx={{display: {xs: 'none', md: 'flex'}}}>
-                        <Typography variant="h6" sx={{flexGrow: 1, color: theme.palette.primary_text.main}}>Yasiru
-                            Kavinda</Typography>
+                        <Typography variant="h6" sx={{flexGrow: 1, color: theme.palette.primary_text.main}}>YASH</Typography>
                         <Button sx={(theme) => ({color: theme.palette.primary_text.main})}>Home</Button>
                         <Button sx={(theme) => ({color: theme.palette.primary_text.main})}>About</Button>
                         <Button sx={(theme) => ({color: theme.palette.primary_text.main})}>Projects</Button>
@@ -187,12 +148,12 @@ function App() {
                             <Grid item xs={12} md={7}>
                                 <Box textAlign="center">
                                     <Avatar
-                                        className="name-card"
+                                        className="profile-pic"
                                         src={ProfileImage}
                                         sx={{width: 200, height: 200, mx: 'auto', mb: 2}}
                                     />
-                                    <Typography variant="h3" className="name-card">Hello, I'm Yasiru!</Typography>
-                                    <Typography variant="h5" className="name-card">Full Stack Developer</Typography>
+                                    <Typography variant="h3" className="hero-text" sx={{flexGrow: 1, color: theme.palette.primary_text.main}}>Hello, I'm Yasiru Kavinda!</Typography>
+                                    <Typography variant="h5" className="hero-text">Full Stack Developer</Typography>
                                 </Box>
                             </Grid>
                             <Grid item xs={12} md={5}>
@@ -246,15 +207,15 @@ function App() {
                 {/* About Section */}
                 <Box sx={{ py: 10, bgcolor: 'secondary.main', color: 'primary.main' }}>
                     <Container>
-                        <Typography variant="h4" textAlign="center" color="white" mb={2}>About Me</Typography>
-                        <Typography textAlign="center" color="white" sx={{maxWidth: '700px', margin: 'auto', mb: 8}}>
-                            I am a Professional in the industry specialized in FullStack Development
-                            with an Experience of 5+ years in the Industry.
+                        <Typography variant="h4" textAlign="center" color="primary.main" mb={2}>About Me</Typography>
+                        <Typography textAlign="justify" color="white" sx={{maxWidth: '700px', margin: 'auto', mb: 8}}>
+                            I'm a Software Engineer with a strong foundation in full-stack development and a passion for building scalable, user-centric applications.
+                            I hold a degree in Software Engineering and specialize in technologies such as Java, Spring Boot, React, and React Native. With hands-on experience in both mobile and web development, I focus on delivering clean, efficient code and intuitive user experiences. I'm committed to continuous learning, collaborative problem-solving, and building solutions that make an impact.
                         </Typography>
 
                         {/* --- TIMELINE CONTAINER --- */}
                         {/* We use position: 'relative' to position the central line */}
-                        <Box ref={timelineSection} sx={{ position: 'relative', mt: 4 }}>
+                        <Box ref={timelineSection} sx={{ position: 'relative', mt:'20'}}>
                             {/* The Central Vertical Line */}
                             <Box
                                 className="timeline-line"

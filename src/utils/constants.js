@@ -39,3 +39,37 @@ export const heightLevels ={
     heightLevel18:Constants.fullHeight*90/100,
     heightLevel19:Constants.fullHeight*95/100,
 };
+
+export const careerHistory = [
+    {
+        year: "2024 Oct - 2025 May",
+        title: "Associate Software Engineer Fullstack",
+        company: "Sentura Technologies",
+        description: "Majorly focused on Mobile Application Developed with Cutting Edge Solutions with Solid Back-End Infrastructure",
+        skills:["Java", "Spring Boot", "React", "React-Native" , "Node.js", "MongoDB", "Docker", "AWS"],
+        icon: 'work'
+    },
+    {
+        year: "2023 Nov - 2024 Oct",
+        title: "React native Mobile Developer (Internship)",
+        company: "Sentura Technologies",
+        description: "Started My Career as an intern in Sentura Technologies worked on several mobile react native applications.",
+        skills: ["React Native", "JavaScript", "Firebase", "Redux"],
+        icon: 'work'
+    },
+    {
+        year: "2020 Sep - 2024 Sep",
+        title: "Degree Level Education",
+        company: "Java Institute for Advanced Technology",
+        description: "Completed my degree in Bachelor of Engineering Software Engineering at IIC University of Technology in Cambodia.",
+        icon: 'school' // <-- Add this
+    },
+    // ... add the 'icon' property to your other entries
+    {
+        year: "2016 - 2019",
+        title: "GCE Advanced Level",
+        company: "Taxila Central College",
+        description: "Faced Advanced Level in Biology Science Stream , Obtained B-Chemistry , C-Physics , C-Biology",
+        icon: 'school' // <-- Add this
+    },
+];

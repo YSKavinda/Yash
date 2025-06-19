@@ -43,7 +43,7 @@ const TechStackComponent = props => {
 
     return (
         <div className="slider-wrapper">
-            <div className="boxes" ref={containerRef}>
+            <div className="boxes" ref={containerRef} >
                 {/* Replace with your actual images */}
                 {[...Array(5)].map((_, i) => (
                     <div key={i} className="box" style={{ '--src': `url(/img${i + 1}.jpg)` }}>
