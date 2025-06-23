@@ -78,39 +78,6 @@ const AboutSection = ({id,timelineSection}) => {
                     <Grid container>
                         {/* LEFT COLUMN — About Me */}
                         <Grid item xs={12} md={6} sx={{ pr: 4}}>
-                            {/*<Box*/}
-                            {/*    sx={{*/}
-                            {/*        width:'100%',*/}
-                            {/*        display: 'flex',*/}
-                            {/*        flexDirection: 'column',*/}
-                            {/*        justifyContent: 'flex-start',*/}
-                            {/*        alignItems: 'center',*/}
-                            {/*        textAlign: 'center',*/}
-                            {/*        px: 2,*/}
-                            {/*    }}*/}
-                            {/*>*/}
-                            {/*    <Typography*/}
-                            {/*        variant="h2"*/}
-                            {/*        component="h2"*/}
-                            {/*        sx={{*/}
-                            {/*            fontWeight: "bold",*/}
-                            {/*            mb: 2,*/}
-                            {/*            background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main || "#f59e0b"})`,*/}
-                            {/*            backgroundClip: "text",*/}
-                            {/*            WebkitBackgroundClip: "text",*/}
-                            {/*            WebkitTextFillColor: "transparent",*/}
-                            {/*        }}*/}
-                            {/*    >*/}
-                            {/*        About Me*/}
-                            {/*    </Typography>*/}
-                            {/*    <Typography*/}
-                            {/*        color="secondary.main"*/}
-                            {/*        sx={{ maxWidth: '700px', mb: 8, textAlign: 'justify',fontSize:24 }}*/}
-                            {/*    >*/}
-                            {/*        I'm a Software Engineer with a strong foundation in full-stack development and a passion for building scalable, user-centric applications.*/}
-                            {/*        I hold a degree in Software Engineering and specialize in technologies such as Java, Spring Boot, React, and React Native. With hands-on experience in both mobile and web development, I focus on delivering clean, efficient code and intuitive user experiences. I'm committed to continuous learning, collaborative problem-solving, and building solutions that make an impact.*/}
-                            {/*    </Typography>*/}
-                            {/*</Box>*/}
                             <EnhancedAboutMeSection/>
                             <Box
                                 sx={{
