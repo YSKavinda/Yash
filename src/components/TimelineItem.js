@@ -1,91 +1,219 @@
-import { Box, Chip, Paper, Typography, Stack } from '@mui/material';
-// Import the icons we'll be using
-import WorkIcon from '@mui/icons-material/Work';
-import SchoolIcon from '@mui/icons-material/School';
+import { Box, Chip, Paper, Typography, Stack, Link, useTheme, alpha } from "@mui/material"
+import WorkIcon from "@mui/icons-material/Work"
+import SchoolIcon from "@mui/icons-material/School"
+import LaunchIcon from "@mui/icons-material/Launch"
 
 export const TimelineItem = ({ item, orientation }) => {
+    const theme = useTheme()
+
     // A small component to render the correct icon based on the data
     const TimelineIcon = () => {
-        if (item.icon === 'work') {
-            return <WorkIcon sx={{ color: 'primary.main' }} />;
+        if (item.icon === "work") {
+            return <WorkIcon sx={{ color: "primary.main", fontSize: 28 }} />
         }
-        if (item.icon === 'school') {
-            return <SchoolIcon sx={{ color: 'primary.main' }} />;
+        if (item.icon === "school") {
+            return <SchoolIcon sx={{ color: "primary.main", fontSize: 28 }} />
         }
-        return null;
-    };
+        return null
+    }
 
     return (
-        <Box className="timeline-item" sx={{ display: 'flex', justifyContent: 'center', mb: 4, position: 'relative' , borderRadius:30}}>
+        <Box
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                mb: 6,
+                position: "relative",
+                px: { xs: 2, md: 0 },
+            }}
+        >
             <Paper
-                elevation={3}
-                className="timeline-card"
+                elevation={0}
                 sx={{
-                    p: 3, // Increased padding for more white space
-                    width: { xs: '80%', md: '40%' },
-                    order: orientation === 'left' ? 1 : 3,
-                    // Add a colored border based on orientation
-                    borderRadius: 6,
-                    borderLeft: orientation === 'right' ? '4px solid' : 'none',
-                    borderRight: orientation === 'left' ? '4px solid' : 'none',
-                    borderColor: 'primary.main',
-                    backgroundColor: 'background.main',
-                    position: 'relative', // Needed for the callout arrow
-                    // The "callout arrow" using a pseudo-element
-                    '&::before': {
+                    p: 4,
+                    width: { xs: "100%", md: "45%" },
+                    maxWidth: 500,
+                    marginLeft: { xs: 0, md: orientation === "left" ? "auto" : 0 },
+                    marginRight: { xs: 0, md: orientation === "right" ? "auto" : 0 },
+                    borderRadius: 4,
+                    border: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+                    background: `linear-gradient(135deg, ${alpha(theme.palette.background.paper, 0.9)} 0%, ${alpha(theme.palette.grey[50], 0.8)} 100%)`,
+                    backdropFilter: "blur(10px)",
+                    position: "relative",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                        transform: "translateY(-4px)",
+                        boxShadow: `0 20px 40px ${alpha(theme.palette.primary.main, 0.1)}`,
+                        border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
+                    },
+                    // Enhanced callout arrow
+                    "&::before": {
                         content: '""',
-                        position: 'absolute',
-                        top: '28px', // Align with the dot
+                        position: "absolute",
+                        top: "50%",
+                        transform: "translateY(-50%)",
                         width: 0,
                         height: 0,
-                        borderStyle: 'solid',
-                        // Position arrow on the correct side
-                        left: orientation === 'left' ? '100%' : 'auto',
-                        right: orientation === 'right' ? '100%' : 'auto',
-                        // Create the triangle shape
-                        borderWidth: '8px 0 8px 12px',
-                        borderColor: orientation === 'left'
-                            ? 'transparent transparent transparent #fff'
-                            : 'transparent',
-                        transform: orientation === 'right' ? 'rotate(180deg)' : 'none',
-                        filter: 'drop-shadow(2px 0px 1px rgba(0,0,0,0.05))',
+                        borderStyle: "solid",
+                        display: { xs: "none", md: "block" },
+                        ...(orientation === "left"
+                            ? {
+                                right: "-15px",
+                                borderWidth: "15px 0 15px 15px",
+                                borderColor: `transparent transparent transparent ${alpha(theme.palette.background.paper, 0.9)}`,
+                            }
+                            : {
+                                left: "-15px",
+                                borderWidth: "15px 15px 15px 0",
+                                borderColor: `transparent ${alpha(theme.palette.background.paper, 0.9)} transparent transparent`,
+                            }),
+                    },
+                    "&::after": {
+                        content: '""',
+                        position: "absolute",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        width: 0,
+                        height: 0,
+                        borderStyle: "solid",
+                        display: { xs: "none", md: "block" },
+                        ...(orientation === "left"
+                            ? {
+                                right: "-16px",
+                                borderWidth: "16px 0 16px 16px",
+                                borderColor: `transparent transparent transparent ${alpha(theme.palette.primary.main, 0.1)}`,
+                            }
+                            : {
+                                left: "-16px",
+                                borderWidth: "16px 16px 16px 0",
+                                borderColor: `transparent ${alpha(theme.palette.primary.main, 0.1)} transparent transparent`,
+                            }),
                     },
                 }}
             >
-                {/* Header with Icon and Title/Company */}
-                <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 1 }}>
-                    <TimelineIcon />
-                    <Box>
-                        <Typography variant="h6" color="secondary_text.main" sx={{ fontWeight: 'bold' }}>{item.title}</Typography>
-                        <Typography variant="subtitle1" color="primary_text.main">{item.company}</Typography>
+                <Stack spacing={3}>
+                    {/* Header with Icon and Title */}
+                    <Box sx={{ display: "flex", alignItems: "flex-start", gap: 2 }}>
+                        <Box
+                            sx={{
+                                p: 1.5,
+                                borderRadius: 3,
+                                bgcolor: alpha(theme.palette.primary.main, 0.1),
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                flexShrink: 0,
+                            }}
+                        >
+                            <TimelineIcon />
+                        </Box>
+                        <Box sx={{ flex: 1, minWidth: 0 }}>
+                            <Typography
+                                variant="h5"
+                                component="h3"
+                                sx={{
+                                    fontWeight: "bold",
+                                    mb: 0.5,
+                                    color: "text.primary",
+                                    lineHeight: 1.2,
+                                }}
+                            >
+                                {item.title}
+                            </Typography>
+                            {/* Company with optional link */}
+                            {item.company && (
+                                <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                                    {item.companyUrl ? (
+                                        <Link
+                                            href={item.companyUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            sx={{
+                                                color: "primary.main",
+                                                textDecoration: "none",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                gap: 0.5,
+                                                fontWeight: 500,
+                                                "&:hover": {
+                                                    textDecoration: "underline",
+                                                },
+                                            }}
+                                        >
+                                            <Typography variant="subtitle1" component="span">
+                                                {item.company}
+                                            </Typography>
+                                            <LaunchIcon sx={{ fontSize: 16 }} />
+                                        </Link>
+                                    ) : (
+                                        <Typography variant="subtitle1" sx={{ fontWeight: 500, color: "text.secondary" }}>
+                                            {item.company}
+                                        </Typography>
+                                    )}
+                                </Box>
+                            )}
+                        </Box>
                     </Box>
+
+                    {/* Date */}
+                    <Typography
+                        variant="body2"
+                        sx={{
+                            color: "text.secondary",
+                            fontStyle: "italic",
+                            fontWeight: 500,
+                            bgcolor: alpha(theme.palette.primary.main, 0.05),
+                            px: 2,
+                            py: 0.5,
+                            borderRadius: 2,
+                            display: "inline-block",
+                            width: "fit-content",
+                        }}
+                    >
+                        {item.date}
+                    </Typography>
+
+                    {/* Description */}
+                    <Typography
+                        variant="body1"
+                        sx={{
+                            lineHeight: 1.7,
+                            color: "text.primary",
+                        }}
+                    >
+                        {item.description}
+                    </Typography>
+
+                    {/* Skills/Tags */}
+                    {item.tags && item.tags.length > 0 && (
+                        <Box>
+                            <Typography variant="subtitle2" sx={{ mb: 1.5, fontWeight: 600, color: "text.secondary" }}>
+                                Technologies & Skills
+                            </Typography>
+                            <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1 }}>
+                                {item.tags.map((tag, index) => (
+                                    <Chip
+                                        key={index}
+                                        label={tag}
+                                        size="small"
+                                        sx={{
+                                            bgcolor: alpha(theme.palette.primary.main, 0.08),
+                                            color: "primary.main",
+                                            border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
+                                            fontWeight: 500,
+                                            "&:hover": {
+                                                bgcolor: alpha(theme.palette.primary.main, 0.15),
+                                                transform: "translateY(-1px)",
+                                            },
+                                            transition: "all 0.2s ease",
+                                        }}
+                                    />
+                                ))}
+                            </Stack>
+                        </Box>
+                    )}
                 </Stack>
-
-                <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic', mb: 2 }}>{item.year}</Typography>
-                <Typography variant="body1" sx={{ mb: 2 }}>{item.description}</Typography>
-
-                {/* Skills Section (Unchanged logic, just better spacing) */}
-                {item.skills && item.skills.length > 0 && (
-                    <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', justifyContent: orientation === 'left' ? 'flex-end' : 'flex-start', gap: '4px' }}>
-                        {item.skills.map((skill, index) => (
-                            <Chip
-                                className="skill-chip"
-                                key={index}
-                                label={skill}
-                                variant="filled"
-                                color="success"
-                                size="small"
-                            />
-                        ))}
-                    </Box>
-                )}
             </Paper>
-
-            {/* This Box is the spacer and the dot */}
-            <Box sx={{ order: 2, width: { xs: '10%', md: '20%' }, display: 'flex', justifyContent: 'center' }}>
-                {/* The dot on the timeline. Aligned with the card icon/header */}
-                <Box className="timeline-dot" sx={{ width: 16, height: 16, bgcolor: 'primary.main', borderRadius: '50%', mt: '28px' }} />
-            </Box>
         </Box>
-    );
-};
+    )
+}

@@ -1,57 +1,36 @@
 import { gsap } from "gsap";
-import { Paper } from '@mui/material';
+import {Box, CssBaseline, Paper} from '@mui/material';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef, useState } from "react"; // Make sure useState is imported
+import React, { useEffect, useRef, useState } from "react"; // Make sure useState is imported
 
 import './App.css';
 import {
-    AppBar, Avatar, Box,
-    Button,
-    Container,
-    createTheme, Grid, Grid2, IconButton,
-    Menu, MenuItem,
     ThemeProvider,
-    Toolbar,
-    Typography
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import ProfileImage from './imgs/profileImg.jpg';
-import {TimelineItem} from "./components/TimelineItem";
-import {careerHistory} from "./utils/constants";
+import Navbar from "./sections/Navbar";
+import {theme} from "./utils/constants";
+import AboutSection from "./sections/AboutSection";
+import ProjectSection from "./sections/ProjectSection.tsx";
+import FooterSection from "./sections/FooterSection";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-
-    const theme = createTheme({
-        palette: {
-            primary: {main: '#190933'},
-            secondary: {main: '#665687'},
-            background: {main: '#B084CC'},
-            primary_text: {main: '#ACFCD9'},
-            secondary_text: {main: '#5DD9C1'}
-        },
-    });
-
-
-
     const [anchorEl, setAnchorEl] = useState(null);
     const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
     const handleMenuClose = () => setAnchorEl(null);
 
-    // This part is correct
     const main = useRef();
     const timelineSection = useRef();
 
     useEffect(() => {
-        // Using gsap.context() is the key to making this work well with React
         const ctx = gsap.context(() => {
 
             const entranceTl = gsap.timeline({
                 defaults: { duration: 0.8, ease: 'power3.out' }
             });
 
-            // Use .from() for clean entrance animations
             entranceTl
                 .from('.profile-pic', { // Animate profile pic first
                     opacity: 0,
@@ -103,167 +82,21 @@ function App() {
                     ease: 'back.out(1.7)'
                 }, "-=0.3");
 
-        }, main); // The context is scoped to our main ref
+        }, main);
 
-        // The cleanup function is essential for React
+
         return () => ctx.revert();
-    }, []); // Empty dependency array ensures this runs only once
+    }, []);
 
     return (
-        // 1. REMOVE the ref from ThemeProvider
         <ThemeProvider theme={theme}>
-            {/* 2. ADD a <Box> as the main wrapper and place the ref HERE */}
-            <Box ref={main}>
-                {/*NavBarSection*/}
-                <AppBar position="sticky">
-                    {/* ... rest of your AppBar code ... */}
-                    <Toolbar sx={{display: {xs: 'none', md: 'flex'}}}>
-                        <Typography variant="h6" sx={{flexGrow: 1, color: theme.palette.primary_text.main}}>YASH</Typography>
-                        <Button sx={(theme) => ({color: theme.palette.primary_text.main})}>Home</Button>
-                        <Button sx={(theme) => ({color: theme.palette.primary_text.main})}>About</Button>
-                        <Button sx={(theme) => ({color: theme.palette.primary_text.main})}>Projects</Button>
-                        <Button sx={(theme) => ({color: theme.palette.primary_text.main})}>Contact</Button>
-                    </Toolbar>
-
-
-                    <Box sx={{display: 'flex', flexGrow: 1, alignItems: 'start', px: 5}}>
-                        <IconButton edge="start" color="inherit" onClick={handleMenuOpen}
-                                    sx={{display: {xs: 'flex', md: 'none'}, alignItems: 'flex-start'}}>
-                            <MenuIcon/>
-                        </IconButton>
-                    </Box>
-
-
-                    <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-                        <MenuItem onClick={handleMenuClose} sx={{color: theme.palette.primary_text.main}}>Home</MenuItem>
-                        <MenuItem onClick={handleMenuClose} sx={{color: theme.palette.primary_text.main}}>About</MenuItem>
-                        <MenuItem onClick={handleMenuClose}
-                                  sx={{color: theme.palette.primary_text.main}}>Projects</MenuItem>
-                        <MenuItem onClick={handleMenuClose} sx={{color: theme.palette.primary_text.main}}>Contact</MenuItem>
-                    </Menu>
-                </AppBar>
-                <Box sx={{bgcolor: 'primary.main', color: 'white', py: 10, textAlign: 'center', flexDirection: 'row'}}>
-                    <Container>
-                        <Grid container spacing={4} alignItems="center">
-                            <Grid item xs={12} md={7}>
-                                <Box textAlign="center">
-                                    <Avatar
-                                        className="profile-pic"
-                                        src={ProfileImage}
-                                        sx={{width: 200, height: 200, mx: 'auto', mb: 2}}
-                                    />
-                                    <Typography variant="h3" className="hero-text" sx={{flexGrow: 1, color: theme.palette.primary_text.main}}>Hello, I'm Yasiru Kavinda!</Typography>
-                                    <Typography variant="h5" className="hero-text">Full Stack Developer</Typography>
-                                </Box>
-                            </Grid>
-                            <Grid item xs={12} md={5}>
-                                <Box textAlign="center">
-                                    {/*<Typography variant="h6" sx={{mb: 2}}>Tech Stack</Typography>*/}
-                                    <Box sx={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3}}>
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-                                        <Avatar
-                                            className="tech-icon"
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                                            sx={{width: 50, height: 50}}/>
-                                    </Box>
-                                </Box>
-                            </Grid>
-                        </Grid>
-                    </Container>
-                </Box>
-
-                {/* About Section */}
-                <Box sx={{ py: 10, bgcolor: 'secondary.main', color: 'primary.main' }}>
-                    <Container>
-                        <Typography variant="h4" textAlign="center" color="primary.main" mb={2}>About Me</Typography>
-                        <Typography textAlign="justify" color="white" sx={{maxWidth: '700px', margin: 'auto', mb: 8}}>
-                            I'm a Software Engineer with a strong foundation in full-stack development and a passion for building scalable, user-centric applications.
-                            I hold a degree in Software Engineering and specialize in technologies such as Java, Spring Boot, React, and React Native. With hands-on experience in both mobile and web development, I focus on delivering clean, efficient code and intuitive user experiences. I'm committed to continuous learning, collaborative problem-solving, and building solutions that make an impact.
-                        </Typography>
-
-                        {/* --- TIMELINE CONTAINER --- */}
-                        {/* We use position: 'relative' to position the central line */}
-                        <Box ref={timelineSection} sx={{ position: 'relative', mt:'20'}}>
-                            {/* The Central Vertical Line */}
-                            <Box
-                                className="timeline-line"
-                                sx={{
-                                    position: 'absolute',
-                                    left: '50%',
-                                    top: 0,
-                                    bottom: 0,
-                                    width: '4px',
-                                    bgcolor: 'primary.main',
-                                    transform: 'translateX(-50%)' // Center the line
-                                }}
-                            />
-
-                            {/* Map over the history data to render items */}
-                            {careerHistory.map((item, index) => (
-                                <TimelineItem
-                                    key={index}
-                                    item={item}
-                                    // Alternate orientation based on index
-                                    orientation={index % 2 === 0 ? 'right' : 'left'}
-                                />
-                            ))}
-                        </Box>
-                    </Container>
-                </Box>
-
-                {/* Projects Section */}
-                <Box sx={{bgcolor: 'grey.100', py: 10}}>
-                    <Container>
-                        <Typography variant="h4" textAlign="center" mb={4}>My Projects</Typography>
-                        <Grid2 container spacing={3}>
-                            <Grid2 item xs={12} md={6}>
-                                <Box p={3} bgcolor="white" boxShadow={2} borderRadius={2} textAlign="center">
-                                    <Typography variant="h6">Project 1</Typography>
-                                    <Typography>React + MUI Web App</Typography>
-                                </Box>
-                            </Grid2>
-                            <Grid2 item xs={12} md={6}>
-                                <Box p={3} bgcolor="white" boxShadow={2} borderRadius={2} textAlign="center">
-                                    <Typography variant="h6">Project 2</Typography>
-                                    <Typography>Node.js + MongoDB API</Typography>
-                                </Box>
-                            </Grid2>
-                        </Grid2>
-                    </Container>
-                </Box>
-            </Box> {/* <-- Close the main <Box> */}
+            <CssBaseline />
+            <Box ref={main} sx={{minHeight:"100vh"}}>
+                  <Navbar anchorEl={anchorEl} handleMenuClose={handleMenuClose} handleMenuOpen={handleMenuOpen} />
+                  <AboutSection id={'home'} timelineSection={timelineSection}/>
+                  <ProjectSection id={'projects'}/>
+                <FooterSection id={'contact'}/>
+            </Box>
         </ThemeProvider>
     );
 }
