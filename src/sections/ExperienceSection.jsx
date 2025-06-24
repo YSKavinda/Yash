@@ -1,5 +1,3 @@
-"use client"
-
 import { Box, Container, Typography, useTheme, alpha } from "@mui/material"
 import { useEffect, useRef, useState } from "react"
 import {careerHistory} from "../utils/constants";
@@ -49,7 +47,7 @@ const ExperienceSection = ({ id }) => {
                 },
             }}
         >
-            <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+            <Container maxWidth="lg" disableGutters sx={{ px: { xs: 2, sm: 3, md: 2, lg: 1 }, position: "relative", zIndex: 1 }}>
                 {/* Section Header */}
                 <Box sx={{ textAlign: "center", mb: 8 }}>
                     <Typography
@@ -62,6 +60,7 @@ const ExperienceSection = ({ id }) => {
                             backgroundClip: "text",
                             WebkitBackgroundClip: "text",
                             WebkitTextFillColor: "transparent",
+                            fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
                         }}
                     >
                         My Journey
@@ -97,6 +96,7 @@ const ExperienceSection = ({ id }) => {
                     ref={timelineRef}
                     sx={{
                         position: "relative",
+                        px: { xs: 2, sm: 3, md: 2, lg: 1 },
                         "&::before": {
                             content: '""',
                             position: "absolute",
@@ -119,7 +119,9 @@ const ExperienceSection = ({ id }) => {
                             sx={{
                                 position: "relative",
                                 opacity: visibleItems.has(index) ? 1 : 0,
-                                transform: visibleItems.has(index) ? "translateY(0)" : "translateY(30px)",
+                                transform: visibleItems.has(index)
+                                    ? "translateY(0)"
+                                    : { xs: "translateY(10px)", sm: "translateY(30px)" },
                                 transition: "all 0.6s ease",
                                 transitionDelay: `${index * 0.1}s`,
                             }}
@@ -127,11 +129,12 @@ const ExperienceSection = ({ id }) => {
                             {/* Timeline Dot */}
                             <Box
                                 sx={{
+
                                     position: "absolute",
                                     left: "50%",
                                     top: "50%",
-                                    width: 20,
-                                    height: 20,
+                                    width: { xs: 0, md: 20 },
+                                    height: { xs: 0, md: 20 },
                                     bgcolor: "primary.main",
                                     borderRadius: "50%",
                                     transform: "translate(-50%, -50%)",
@@ -174,13 +177,15 @@ const ExperienceSection = ({ id }) => {
                             display: "inline-flex",
                             alignItems: "center",
                             gap: 1,
-                            px: 4,
-                            py: 2,
+                            px: { xs: 3, sm: 4 },
+                            py: { xs: 1.5, sm: 2 },
+                            fontSize: { xs: "0.9rem", sm: "1rem" },
                             bgcolor: "primary.main",
                             color: "white",
                             borderRadius: 3,
                             textDecoration: "none",
                             fontWeight: 600,
+                            mt: { xs: 4, sm: 6 },
                             transition: "all 0.3s ease",
                             "&:hover": {
                                 bgcolor: "primary.dark",

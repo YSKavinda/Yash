@@ -1,108 +1,151 @@
-import {Avatar, Box, Container, Grid, Typography, useTheme} from "@mui/material";
+import {
+    Avatar,
+    Box,
+    Container,
+    Grid,
+    Typography,
+    useTheme
+} from "@mui/material";
 import ProfileImage from "../imgs/profileImg.jpg";
-import {careerHistory, theme} from "../utils/constants";
+import {Code, Lightbulb, Rocket} from "@mui/icons-material";
 import ServicesSection from "./ServicesSection";
 import ExperienceSection from "./ExperienceSection";
-import {Code, Lightbulb, Rocket} from "@mui/icons-material";
 import EnhancedAboutMeSection from "./EnhancedAboutMeSection";
 
-const AboutSection = ({id,timelineSection}) => {
-
+const AboutSection = ({id, timelineSection}) => {
     const theme = useTheme();
-    return(
+
+    return (
         <>
-            <Box id={id} sx={{bgcolor: 'primary.main', color: 'white', py: 10, textAlign: 'center', flexDirection: 'row'}}>
-                <Container>
-                    <Grid container spacing={4} alignItems="center">
-                        <Grid item xs={12} md={7}>
-                            <Box textAlign="center">
+            {/* Hero Section */}
+            <Box
+                id={id}
+                sx={{
+                    bgcolor: "primary.main",
+                    color: "white",
+                    py: {xs: 6, sm: 8, md: 10},
+                    textAlign: "center",
+                }}
+            >
+                <Container
+                    maxWidth="lg"
+                    sx={{
+                        px: {xs: 2, sm: 3, md: 4, lg: 2, xl: 0}, // reduces padding on large desktops
+                    }}
+                >
+                    <Grid
+                        container
+                        spacing={4}
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        {/* Profile Image + Greeting */}
+                        <Grid item xs={12} md={6}>
+                            <Box>
                                 <Avatar
                                     className="profile-pic"
                                     src={ProfileImage}
-                                    sx={{width: 200, height: 200, mx: 'auto', mb: 2}}
+                                    sx={{
+                                        width: {xs: 140, sm: 160, md: 200},
+                                        height: {xs: 140, sm: 160, md: 200},
+                                        mx: "auto",
+                                        mb: 2,
+                                    }}
                                 />
-                                <Typography variant="h3" className="hero-text" sx={{flexGrow: 1, color: theme.palette.primary_text.main}}>Hello, I'm Yasiru Kavinda!</Typography>
-                                <Typography variant="h5" className="hero-text">Full Stack Developer</Typography>
+                                <Typography
+                                    variant="h4"
+                                    className="hero-text"
+                                    sx={{
+                                        color: theme.palette.primary_text?.main || "white",
+                                        fontWeight: 700,
+                                        fontSize: {xs: "1.75rem", sm: "2rem", md: "2.5rem"},
+                                    }}
+                                >
+                                    Hello, I'm Yasiru Kavinda!
+                                </Typography>
+                                <Typography
+                                    variant="h6"
+                                    className="hero-text"
+                                    sx={{fontSize: {xs: "1rem", sm: "1.25rem"}}}
+                                >
+                                    Full Stack Developer
+                                </Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} md={5}>
-                            <Box textAlign="center">
-                                {/*<Typography variant="h6" sx={{mb: 2}}>Tech Stack</Typography>*/}
-                                <Box sx={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3}}>
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                                        sx={{width: 50, height: 50}}/>
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                        sx={{width: 50, height: 50}}/>
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                                        sx={{width: 50, height: 50}}/>
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                                        sx={{width: 50, height: 50}}/>
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-                                        sx={{width: 50, height: 50}}/>
 
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"
-                                        sx={{width: 50, height: 50}}/>
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg"
-                                        sx={{width: 50, height: 50}}/>
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                                        sx={{width: 50, height: 50}}/>
-                                    <Avatar
-                                        className="tech-icon"
-                                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-                                        sx={{width: 50, height: 50}}/>
+                        {/* Tech Stack Icons */}
+                        <Grid item xs={12}>
+                            <Box>
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        flexWrap: "wrap",
+                                        gap: 2,
+                                        px: {xs: 1, sm: 2},
+                                    }}
+                                >
+                                    {[
+                                        "java",
+                                        "javascript",
+                                        "react",
+                                        "nodejs",
+                                        "mongodb",
+                                        "spring",
+                                        "linux",
+                                        "docker",
+                                        "mysql",
+                                    ].map((tech) => (
+                                        <Avatar
+                                            key={tech}
+                                            className="tech-icon"
+                                            src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${tech}/${tech}-original.svg`}
+                                            sx={{
+                                                width: {xs: 36, sm: 44, md: 50},
+                                                height: {xs: 36, sm: 44, md: 50},
+                                            }}
+                                        />
+                                    ))}
                                 </Box>
                             </Box>
                         </Grid>
                     </Grid>
                 </Container>
             </Box>
-            {/* About Section */}
-            <Box sx={{ py: 10, color: 'primary.main' }}>
-                <Container maxWidth={false}>
-                    <Grid container>
-                        {/* LEFT COLUMN — About Me */}
-                        <Grid item xs={12} md={6} sx={{ pr: 4}}>
+
+            {/* Detailed About Section */}
+            <Box sx={{py: {xs: 6, sm: 8, md: 10}, color: "primary.main"}}>
+                <Container  maxWidth="lg"
+                            sx={{
+                                px: { xs: 2, sm: 2, md: 2, lg: 0, xl: 0 },
+                            }}
+                >
+                    <Grid container spacing={4}>
+                        {/* About Me + Services */}
+                        <Grid item xs={12}>
                             <EnhancedAboutMeSection/>
                             <Box
                                 sx={{
-                                    width:'100%',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'flex-start',
-                                    alignItems: 'center',
-                                    textAlign: 'center',
+                                    mt: 4,
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "flex-start",
+                                    alignItems: "center",
                                 }}
                             >
                                 <ServicesSection id={"services"}/>
                             </Box>
                         </Grid>
 
-                        {/* RIGHT COLUMN — Timeline */}
-                        <ExperienceSection timelineSection={timelineSection}/>
+                        {/* Experience Timeline */}
+                        <Grid item xs={12}>
+                            <ExperienceSection timelineSection={timelineSection}/>
+                        </Grid>
                     </Grid>
                 </Container>
-
-
-
             </Box>
         </>
-    )
-}
+    );
+};
 
 export default AboutSection;

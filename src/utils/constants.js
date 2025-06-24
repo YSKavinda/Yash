@@ -247,8 +247,8 @@ export const projectsData = [
             "/placeholder.svg?height=400&width=600&text=Transactions+List",
         ],
         category: "Mobile App",
-        liveUrl: "https://example.com/dashboard",
-        githubUrl: "https://github.com/example/dashboard",
+        liveUrl: "https://play.google.com/store/apps/details?id=com.yaluowe",
+        githubUrl: "#CommercialProjectNDA",
     },
     {
         id: 2,
@@ -262,7 +262,7 @@ export const projectsData = [
             "/placeholder.svg?height=400&width=600&text=Meal+Planner",
         ],
         category: "Mobile App",
-        githubUrl: "https://github.com/example/task-api",
+        githubUrl: "#CommercialProjectNDA",
     },
     {
         id: 3,
@@ -276,8 +276,8 @@ export const projectsData = [
             "/placeholder.svg?height=400&width=600&text=Driver+Location",
         ],
         category: "Mobile App",
-        liveUrl: "https://example.com/weather-app",
-        githubUrl: "https://github.com/example/weather-app",
+        liveUrl: "https://play.google.com/store/apps/details?id=lk.sawari.customer",
+        githubUrl: "#CommercialProjectNDA",
     },
     {
         id: 4,
@@ -306,8 +306,8 @@ export const projectsData = [
             "/placeholder.svg?height=400&width=600&text=Order+Management",
         ],
         category: "Web Application",
-        liveUrl: "https://example.com/portfolio",
-        githubUrl: "https://github.com/example/portfolio",
+        liveUrl: "#",
+        githubUrl: "#",
     },
     {
         id: 5,
@@ -321,8 +321,8 @@ export const projectsData = [
             "/placeholder.svg?height=400&width=600&text=Appointments",
         ],
         category: "Mobile App",
-        liveUrl: "https://example.com/portfolio",
-        githubUrl: "https://github.com/example/portfolio",
+        liveUrl: "#",
+        githubUrl: "#",
     },
     {
         id: 6,
@@ -351,8 +351,8 @@ export const projectsData = [
             "/placeholder.svg?height=400&width=600&text=Borrowing+History",
         ],
         category: "Web Application",
-        liveUrl: "https://example.com/portfolio",
-        githubUrl: "https://github.com/example/portfolio",
+        liveUrl: "#",
+        githubUrl: "#",
     },
 
 ]

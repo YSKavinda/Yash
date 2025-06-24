@@ -1,5 +1,3 @@
-"use client"
-
 import { Box, Typography, useTheme, alpha, Container, Stack, Chip } from "@mui/material"
 import { Code, Lightbulb, Rocket, LightbulbCircle } from "@mui/icons-material"
 
@@ -29,7 +27,7 @@ const EnhancedAboutMeSection = () => {
             sx={{
                 py: 8,
                 position: "relative",
-                background: `linear-gradient(135deg, ${alpha(theme.palette.background.default, 0.8)} 0%, ${alpha(theme.palette.grey[50], 0.9)} 100%)`,
+                background:`linear-gradient(135deg, ${alpha(theme.palette.background.default, 0.8)} 0%, ${alpha(theme.palette.grey[50], 0.9)} 100%)`,
                 "&::before": {
                     content: '""',
                     position: "absolute",
@@ -97,7 +95,7 @@ const EnhancedAboutMeSection = () => {
                             bgcolor: alpha(theme.palette.common.white, 0.8),
                             backdropFilter: "blur(10px)",
                             borderRadius: 4,
-                            p: 6,
+                            p: { xs: 3, sm: 4, md: 6 },
                             mb: 6,
                             border: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
                             boxShadow: `0 20px 40px ${alpha(theme.palette.common.black, 0.08)}`,
@@ -118,7 +116,7 @@ const EnhancedAboutMeSection = () => {
                             variant="h6"
                             sx={{
                                 color: "text.primary",
-                                lineHeight: 1.8,
+                                lineHeight: 1.5,
                                 fontSize: "1.25rem",
                                 fontWeight: 400,
                                 textAlign: "justify",
@@ -129,8 +127,8 @@ const EnhancedAboutMeSection = () => {
                                 },
                             }}
                         >
-                            I'm a <strong>Software Engineer</strong> with a strong foundation in full-stack development and a passion
-                            for building scalable, user-centric applications. I hold a degree in <strong>Software Engineering</strong>{" "}
+                            I'm a Software Engineer with a strong foundation in full-stack development and a passion
+                            for building scalable, user-centric applications. I hold a degree in Software Engineering
                             and specialize in technologies such as Java, Spring Boot, React, and React Native.
                         </Typography>
 
@@ -161,11 +159,20 @@ const EnhancedAboutMeSection = () => {
                         >
                             What I Bring to the Table
                         </Typography>
-                        <Stack direction={{ xs: "column", sm: "row" }} spacing={3} justifyContent="center" alignItems="center">
+                        <Stack
+                            direction={{ xs: "column", sm: "row" }}
+                            spacing={3}
+                            justifyContent="center"
+                            alignItems="stretch"
+                            flexWrap="wrap"
+                            useFlexGap
+                        >
                             {highlights.map((highlight, index) => (
                                 <Box
                                     key={index}
                                     sx={{
+                                        flex: { xs: "1 1 100%", sm: "1 1 calc(50% - 24px)", md: "1 1 220px" },
+                                        maxWidth: "100%",
                                         display: "flex",
                                         flexDirection: "column",
                                         alignItems: "center",
@@ -220,7 +227,19 @@ const EnhancedAboutMeSection = () => {
                         >
                             Core Technologies
                         </Typography>
-                        <Stack direction="row" spacing={1} flexWrap="wrap" justifyContent="center" sx={{ gap: 1 }}>
+                        <Stack
+                            direction="row"
+                            spacing={1}
+                            flexWrap="wrap"
+                            justifyContent="center"
+                            sx={{
+                                gap: 1,
+                                "& .MuiChip-root": {
+                                    fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                                    px: { xs: 1, sm: 2 },
+                                },
+                            }}
+                        >
                             {skills.map((skill, index) => (
                                 <Chip
                                     key={skill}

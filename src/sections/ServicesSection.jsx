@@ -12,7 +12,8 @@ const ServicesSection = ({id}) => {
         <Box
             id={id}
             sx={{
-                py: 8,
+                py: { xs: 6, sm: 8, md: 10 },
+                px: { xs: 2, sm: 3, md: 4, lg: 0 },
                 position: "relative",
                 background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.02)} 0%, ${alpha(theme.palette.secondary.main || "#f59e0b", 0.02)} 100%)`,
                 "&::before": {
@@ -29,13 +30,14 @@ const ServicesSection = ({id}) => {
         >
             <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
                 {/* Section Header */}
-                <Box sx={{ textAlign: "center", mb: 8 }}>
+                <Box sx={{ textAlign: "center", mb: { xs: 6, sm: 8 } }}>
                     <Typography
                         variant="h2"
                         component="h2"
                         sx={{
                             fontWeight: "bold",
                             mb: 2,
+                            fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
                             background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main || "#f59e0b"})`,
                             backgroundClip: "text",
                             WebkitBackgroundClip: "text",
@@ -49,6 +51,7 @@ const ServicesSection = ({id}) => {
                         sx={{
                             color: "text.secondary",
                             fontWeight: 300,
+                            fontSize: { xs: "1.1rem", sm: "1.25rem" },
                             mb: 2,
                             maxWidth: "600px",
                             mx: "auto",
@@ -63,6 +66,7 @@ const ServicesSection = ({id}) => {
                             maxWidth: "800px",
                             mx: "auto",
                             lineHeight: 1.7,
+                            fontSize: { xs: "1rem", sm: "1.1rem" }
                         }}
                     >
                         I offer comprehensive digital solutions from concept to deployment, specializing in modern web and mobile
@@ -71,9 +75,23 @@ const ServicesSection = ({id}) => {
                 </Box>
 
                 {/* Services Grid */}
-                <Grid container spacing={4}>
+                <Grid
+                     container
+                      spacing={{ xs: 4, sm: 4, md: 5 }}
+                      justifyContent="center"
+                >
                     {servicesData.map((service) => (
-                        <Grid item xs={12} md={6} lg={6} key={service.id}>
+                        <Grid item
+                              xs={12}
+                              sm={12}
+                              md={6}
+                              lg={6}
+                              key={service.id}
+                              sx={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                              }}
+                        >
                             <ServiceCard service={service} />
                         </Grid>
                     ))}
