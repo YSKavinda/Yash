@@ -37,7 +37,17 @@ interface ProjectModalProps {
 const ProjectModal = ({ project, open, onClose }: ProjectModalProps) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0)
     const theme = useTheme()
-    const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
+    const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+    const getImageStyles = (category: string, isMobile: boolean) => {
+        const isMobileApp = category.toLowerCase().includes("mobile");
+        return {
+            height: isMobile ? (isMobileApp ? 300 : 200) : isMobileApp ? 500 : 400,
+            objectFit: isMobileApp ? "contain" : "cover",
+            borderRadius: 8,
+            backgroundColor: "#f5f5f5"
+        };
+    };
 
     if (!project) return null
 
@@ -79,8 +89,7 @@ const ProjectModal = ({ project, open, onClose }: ProjectModalProps) => {
                             alt={`${project.title} screenshot ${currentImageIndex + 1}`}
                             sx={{
                                 width: "100%",
-                                height: { xs: 250, md: 400 },
-                                objectFit: "cover",
+                                ...getImageStyles(project.category, fullScreen),
                             }}
                         />
 
@@ -127,6 +136,8 @@ const ProjectModal = ({ project, open, onClose }: ProjectModalProps) => {
                                         bgcolor: "rgba(0,0,0,0.6)",
                                         p: 1,
                                         borderRadius: 1,
+                                        overflowX: "auto",
+                                        maxWidth: "90%",
                                     }}
                                 >
                                     {project.screenshots.map((screenshot, index) => (

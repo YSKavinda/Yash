@@ -1,4 +1,8 @@
-import { Typography, Card, CardMedia, CardContent } from "@mui/material"
+import { Typography, Card, CardMedia, CardContent } from "@mui/material";
+import SmartphoneIcon from "@mui/icons-material/Smartphone"
+import LanguageIcon from "@mui/icons-material/Language"
+import DesktopWindowsIcon from "@mui/icons-material/DesktopWindows"
+import AppsIcon from "@mui/icons-material/Apps"
 
 interface ProjectCardProps {
     project: {
@@ -16,6 +20,15 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
+
+    const getCategoryIcon = (category: string) => {
+        const lowerCategory = category.toLowerCase()
+        if (lowerCategory.includes("mobile")) return <SmartphoneIcon sx={{ fontSize: 60 }} />
+        if (lowerCategory.includes("web")) return <LanguageIcon sx={{ fontSize: 60 }} />
+        if (lowerCategory.includes("desktop")) return <DesktopWindowsIcon sx={{ fontSize: 60 }} />
+        return <AppsIcon sx={{ fontSize: 60 }} /> // fallback
+    }
+
     return (
         <Card
             sx={{
@@ -33,14 +46,16 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
             onClick={onClick}
         >
             <CardMedia
-                component="img"
-                height="140"
-                image={project.screenshots[0]}
-                alt={project.title}
                 sx={{
-                    objectFit: "cover",
+                    height: 140,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#f3f4f6",
                 }}
-            />
+            >
+                {getCategoryIcon(project.category)}
+            </CardMedia>
             <CardContent sx={{ p: 2, "&:last-child": { pb: 2 } }}>
                 <Typography
                     variant="h6"
