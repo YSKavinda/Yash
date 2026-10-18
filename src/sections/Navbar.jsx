@@ -19,7 +19,7 @@ import { useState, useEffect } from "react"
 const navItems = [
     { label: "Home", href: "#home", icon: Home },
     { label: "About", href: "#about", icon: Person },
-    { label: "Services", href: "#services", icon: Code },
+    { label: "Experience", href: "#experience", icon: Code },
     { label: "Projects", href: "#projects", icon: Work },
     { label: "Contact", href: "#contact", icon: Email },
 ]
@@ -65,10 +65,10 @@ const Navbar = () => {
         const subject = encodeURIComponent("Project Inquiry - Let's Work Together!");
         const body = encodeURIComponent(`Hi Yash,
 
-I'm interested in discussing a potential project with you.
+I'm interested in discussing a potential project or engineering opportunity with you.
 
 Project Details:
-- Project Type: [Web Development / Mobile App / UI/UX Design / Other]
+- Project Type: [Mobile / Backend / AI / Other]
 - Timeline: [Your preferred timeline]
 - Budget Range: [Your budget range]
 - Brief Description: [Tell me about your project]
@@ -95,7 +95,7 @@ Best regards,
                 position="fixed"
                 elevation={0}
                 sx={{
-                    background: scrolled ? `${alpha(theme.palette.background.paper, 0.95)}` : "transparent",
+                    background: scrolled ? `${alpha(theme.palette.background.paper, 0.95)}` : "#172b4d",
                     backdropFilter: scrolled ? "blur(20px)" : "none",
                     borderBottom: scrolled ? `1px solid ${alpha(theme.palette.divider, 0.1)}` : "none",
                     transition: "all 0.3s ease",
@@ -111,10 +111,7 @@ Best regards,
                             sx={{
                                 flexGrow: 1,
                                 fontWeight: "bold",
-                                background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main || "#f59e0b"})`,
-                                backgroundClip: "text",
-                                WebkitBackgroundClip: "text",
-                                WebkitTextFillColor: "transparent",
+                                color: scrolled ? "primary.main" : "#d8fff3",
                                 cursor: "pointer",
                                 transition: "all 0.3s ease",
                                 "&:hover": {
@@ -123,7 +120,7 @@ Best regards,
                             }}
                             onClick={() => handleNavClick("#home")}
                         >
-                            YASH
+                            YASIRU
                         </Typography>
 
                         {/* Desktop Navigation */}

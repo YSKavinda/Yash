@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Box, Chip, Stack, alpha, useTheme } from "@mui/material"
+import { Card, CardContent, Typography, Box, Chip, Stack, alpha } from "@mui/material"
 import { Code, Smartphone, Palette, Computer, Cloud, Lightbulb, ArrowForward } from "@mui/icons-material"
 
 const iconMap = {
@@ -11,7 +11,6 @@ const iconMap = {
 }
 
 const ServiceCard = ({ service }) => {
-    const theme = useTheme()
     const IconComponent = iconMap[service.icon]
 
     return (

@@ -44,7 +44,7 @@ const ServicesSection = ({id}) => {
                             WebkitTextFillColor: "transparent",
                         }}
                     >
-                        My Services
+                        What I Work On
                     </Typography>
                     <Typography
                         variant="h5"
@@ -57,7 +57,7 @@ const ServicesSection = ({id}) => {
                             mx: "auto",
                         }}
                     >
-                        Transforming Ideas into Digital Reality
+                        From product features to reliable delivery
                     </Typography>
                     <Typography
                         variant="body1"
@@ -69,8 +69,7 @@ const ServicesSection = ({id}) => {
                             fontSize: { xs: "1rem", sm: "1.1rem" }
                         }}
                     >
-                        I offer comprehensive digital solutions from concept to deployment, specializing in modern web and mobile
-                        technologies with a focus on user experience and scalable architecture.
+                        My recent work spans mobile apps, backend services, AI integrations and the systems that keep them running.
                     </Typography>
                 </Box>
 
@@ -103,7 +102,7 @@ const ServicesSection = ({id}) => {
                         Ready to Start Your Project?
                     </Typography>
                     <Typography variant="body1" sx={{ color: "text.secondary", mb: 4, maxWidth: "500px", mx: "auto" }}>
-                        Let's discuss how I can help bring your ideas to life with cutting-edge technology and exceptional design.
+                        Let's discuss how my mobile, backend and AI integration experience could help your next project.
                     </Typography>
                     <Box
                         component="a"

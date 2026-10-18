@@ -1,4 +1,4 @@
-import { Typography, Card, CardMedia, CardContent } from "@mui/material";
+import { Typography, Card, Box, CardContent, Chip } from "@mui/material";
 import SmartphoneIcon from "@mui/icons-material/Smartphone"
 import LanguageIcon from "@mui/icons-material/Language"
 import DesktopWindowsIcon from "@mui/icons-material/DesktopWindows"
@@ -32,41 +32,44 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
     return (
         <Card
             sx={{
-                width: 280,
-                height: 200,
-                padding:2,
+                width: "100%",
+                height: "100%",
+                minHeight: 285,
+                p: 2,
                 cursor: "pointer",
+                borderRadius: 4,
+                border: "1px solid #dce7eb",
+                boxShadow: "0 8px 25px rgba(23,43,77,.05)",
                 transition: "all 0.3s ease",
                 flexShrink: 0,
                 "&:hover": {
                     transform: "translateY(-4px)",
-                    boxShadow: 4,
+                    boxShadow: "0 16px 32px rgba(23,43,77,.12)",
                 },
             }}
             onClick={onClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onClick(); } }}
         >
-            <CardMedia
+            <Box
                 sx={{
-                    height: 140,
+                    height: 82,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    backgroundColor: "#f3f4f6",
+                    background: "linear-gradient(135deg, #e9f7f4, #e6ecf6)",
+                    color: "#0d8f86",
+                    borderRadius: 2,
                 }}
             >
                 {getCategoryIcon(project.category)}
-            </CardMedia>
+            </Box>
             <CardContent sx={{ p: 2, "&:last-child": { pb: 2 } }}>
                 <Typography
                     variant="h6"
                     component="h3"
-                    sx={{
-                        fontSize: "1rem",
-                        fontWeight: 600,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                    }}
+                    sx={{ fontSize: "1.08rem", fontWeight: 700, color: "#172b4d" }}
                 >
                     {project.title}
                 </Typography>
@@ -78,8 +81,11 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
                         mt: 0.5,
                     }}
                 >
-                    {project.category}
+                    {project.shortDescription}
                 </Typography>
+                <Box sx={{display: "flex", flexWrap: "wrap", gap: .7, mt: 2}}>
+                    {project.technologies.slice(0, 3).map((tech) => <Chip key={tech} size="small" label={tech} sx={{bgcolor: "#eaf3f4", color: "#195365"}} />)}
+                </Box>
             </CardContent>
         </Card>
     )

@@ -5,21 +5,16 @@ const EnhancedAboutMeSection = () => {
     const theme = useTheme()
 
     const highlights = [
-        { icon: Code, text: "Full-Stack Development", color: theme.palette.primary.main },
-        { icon: Lightbulb, text: "Problem Solving", color: theme.palette.secondary.main || "#f59e0b" },
-        { icon: Rocket, text: "Scalable Solutions", color: "#10b981" },
-        { icon: LightbulbCircle, text: "User Experience", color: "#ef4444" },
+        { icon: Code, text: "Full-stack delivery", color: theme.palette.primary.main },
+        { icon: Lightbulb, text: "AI-assisted workflows", color: theme.palette.secondary.main },
+        { icon: Rocket, text: "Mobile releases", color: "#a6613b" },
+        { icon: LightbulbCircle, text: "Collaborative engineering", color: "#8062a5" },
     ]
 
     const skills = [
-        "Java",
-        "Spring Boot",
-        "React",
-        "React Native",
-        "Node.js",
-        "MongoDB",
-        "Full-Stack",
-        "Mobile Development",
+        "TypeScript", "React Native", "React", "Node.js", "Express",
+        "MongoDB", "Ruby on Rails", "Java", "Spring Boot", "RabbitMQ",
+        "AWS", "Firebase", "GitHub Actions", "Gemini Live", "MCP",
     ]
 
     return (
@@ -86,7 +81,7 @@ const EnhancedAboutMeSection = () => {
                             fontStyle: "italic",
                         }}
                     >
-                        Crafting Digital Solutions with Passion & Precision
+                        Mobile engineering, backend systems and practical AI
                     </Typography>
 
                     {/* Main Content */}
@@ -127,9 +122,9 @@ const EnhancedAboutMeSection = () => {
                                 },
                             }}
                         >
-                            I'm a Software Engineer with a strong foundation in full-stack development and a passion
-                            for building scalable, user-centric applications. I hold a degree in Software Engineering
-                            and specialize in technologies such as Java, Spring Boot, React, and React Native.
+                            I'm a software engineer at Xigenix Lanka, working across React Native mobile products,
+                            Ruby on Rails services and the TradesNow AI / Fixby backend. I enjoy turning complex
+                            workflows into useful, dependable experiences.
                         </Typography>
 
                         <Typography
@@ -141,9 +136,9 @@ const EnhancedAboutMeSection = () => {
                                 textAlign: "justify",
                             }}
                         >
-                            With hands-on experience in both mobile and web development, I focus on delivering clean, efficient code
-                            and intuitive user experiences. I'm committed to continuous learning, collaborative problem-solving, and
-                            building solutions that make an impact.
+                            My work spans Android and iOS releases, APIs, messaging, automation and AI-assisted
+                            troubleshooting. Earlier at Sentura Technologies, I built full-stack and mobile features
+                            with Spring Boot, React Native, Firebase and AWS.
                         </Typography>
                     </Box>
 
@@ -213,6 +208,15 @@ const EnhancedAboutMeSection = () => {
                                 </Box>
                             ))}
                         </Stack>
+                    </Box>
+
+                    <Box sx={{ bgcolor: "#eaf3f4", borderRadius: 3, p: { xs: 3, md: 4 }, mb: 6, textAlign: "left" }}>
+                        <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Beyond the code</Typography>
+                        <Typography sx={{ color: "text.secondary", lineHeight: 1.7 }}>
+                            I communicate with clients and stakeholders, present technical work, document decisions
+                            and coordinate across teams. I have also supported company events and speaker coordination,
+                            and joined team cricket and badminton activities.
+                        </Typography>
                     </Box>
 
                     {/* Skills Tags */}

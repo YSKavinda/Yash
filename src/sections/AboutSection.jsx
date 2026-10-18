@@ -7,7 +7,6 @@ import {
     useTheme
 } from "@mui/material";
 import ProfileImage from "../imgs/profileImg.jpg";
-import {Code, Lightbulb, Rocket} from "@mui/icons-material";
 import ServicesSection from "./ServicesSection";
 import ExperienceSection from "./ExperienceSection";
 import EnhancedAboutMeSection from "./EnhancedAboutMeSection";
@@ -21,9 +20,9 @@ const AboutSection = ({id, timelineSection}) => {
             <Box
                 id={id}
                 sx={{
-                    bgcolor: "primary.main",
+                    background: "radial-gradient(circle at 78% 20%, #125f68 0%, #172b4d 48%, #101c35 100%)",
                     color: "white",
-                    py: {xs: 6, sm: 8, md: 10},
+                    py: {xs: 8, sm: 10, md: 13},
                     textAlign: "center",
                 }}
             >
@@ -61,15 +60,22 @@ const AboutSection = ({id, timelineSection}) => {
                                         fontSize: {xs: "1.75rem", sm: "2rem", md: "2.5rem"},
                                     }}
                                 >
-                                    Hello, I'm Yasiru Kavinda!
+                                    Yasiru Sandun
                                 </Typography>
                                 <Typography
                                     variant="h6"
                                     className="hero-text"
                                     sx={{fontSize: {xs: "1rem", sm: "1.25rem"}}}
                                 >
-                                    Full Stack Developer
+                                    Software Engineer · Mobile, Backend & AI
                                 </Typography>
+                                <Typography sx={{maxWidth: 600, mx: "auto", mt: 2, color: "#d9e8ee", lineHeight: 1.7}}>
+                                    I build dependable applications from mobile interfaces to backend services, and explore useful AI-assisted experiences.
+                                </Typography>
+                                <Box sx={{display: "flex", justifyContent: "center", gap: 1.5, mt: 3, flexWrap: "wrap"}}>
+                                    <Box component="a" href="#projects" sx={{px: 3, py: 1.2, bgcolor: "#65d6bc", color: "#102437", borderRadius: 2, fontWeight: 700, textDecoration: "none"}}>Explore my work</Box>
+                                    <Box component="a" href="mailto:yskavinda@gmail.com" sx={{px: 3, py: 1.2, color: "white", border: "1px solid #8ab0bc", borderRadius: 2, fontWeight: 700, textDecoration: "none"}}>Get in touch</Box>
+                                </Box>
                             </Box>
                         </Grid>
 
@@ -87,14 +93,13 @@ const AboutSection = ({id, timelineSection}) => {
                                 >
                                     {[
                                         "java",
-                                        "javascript",
+                                        "typescript",
                                         "react",
                                         "nodejs",
                                         "mongodb",
                                         "spring",
-                                        "linux",
-                                        "docker",
-                                        "mysql",
+                                        "ruby",
+                                        "android",
                                     ].map((tech) => (
                                         <Avatar
                                             key={tech}
@@ -114,7 +119,7 @@ const AboutSection = ({id, timelineSection}) => {
             </Box>
 
             {/* Detailed About Section */}
-            <Box sx={{py: {xs: 6, sm: 8, md: 10}, color: "primary.main"}}>
+            <Box id="about" sx={{py: {xs: 6, sm: 8, md: 10}, color: "primary.main"}}>
                 <Container  maxWidth="lg"
                             sx={{
                                 px: { xs: 2, sm: 2, md: 2, lg: 0, xl: 0 },
@@ -139,7 +144,7 @@ const AboutSection = ({id, timelineSection}) => {
 
                         {/* Experience Timeline */}
                         <Grid item xs={12}>
-                            <ExperienceSection timelineSection={timelineSection}/>
+                            <ExperienceSection id="experience" timelineSection={timelineSection}/>
                         </Grid>
                     </Grid>
                 </Container>

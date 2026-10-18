@@ -82,7 +82,7 @@ const ProjectModal = ({ project, open, onClose }: ProjectModalProps) => {
             <DialogContent>
                 <Stack spacing={3}>
                     {/* Image Slider */}
-                    <Box sx={{ position: "relative", borderRadius: 2, overflow: "hidden" }}>
+                    {project.screenshots.length > 0 && <Box sx={{ position: "relative", borderRadius: 2, overflow: "hidden" }}>
                         <Box
                             component="img"
                             src={project.screenshots[currentImageIndex]}
@@ -163,7 +163,7 @@ const ProjectModal = ({ project, open, onClose }: ProjectModalProps) => {
                                 </Stack>
                             </>
                         )}
-                    </Box>
+                    </Box>}
 
                     {/* Project Details */}
                     <Box>

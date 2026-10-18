@@ -1,32 +1,9 @@
 import { Box, Container, Typography, useTheme, alpha } from "@mui/material"
-import { useEffect, useRef, useState } from "react"
 import {careerHistory} from "../utils/constants";
 import {TimelineItem} from "../components/TimelineItem";
 
 const ExperienceSection = ({ id }) => {
     const theme = useTheme()
-    const timelineRef = useRef(null)
-    const [visibleItems, setVisibleItems] = useState(new Set())
-
-    // Intersection Observer for animations
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const index = Number.parseInt(entry.target.dataset.index)
-                        setVisibleItems((prev) => new Set([...prev, index]))
-                    }
-                })
-            },
-            { threshold: 0.2, rootMargin: "50px" },
-        )
-
-        const timelineItems = document.querySelectorAll(".timeline-item")
-        timelineItems.forEach((item) => observer.observe(item))
-
-        return () => observer.disconnect()
-    }, [])
 
     return (
         <Box
@@ -86,14 +63,12 @@ const ExperienceSection = ({ id }) => {
                             lineHeight: 1.7,
                         }}
                     >
-                        A chronological journey through my professional experience and educational background, showcasing the skills
-                        and knowledge I've gained along the way.
+                        The teams, products and education behind my work.
                     </Typography>
                 </Box>
 
                 {/* Timeline Container */}
                 <Box
-                    ref={timelineRef}
                     sx={{
                         position: "relative",
                         px: { xs: 2, sm: 3, md: 2, lg: 1 },
@@ -114,16 +89,8 @@ const ExperienceSection = ({ id }) => {
                     {careerHistory.map((item, index) => (
                         <Box
                             key={item.id}
-                            data-index={index}
-                            className="timeline-item"
                             sx={{
                                 position: "relative",
-                                opacity: visibleItems.has(index) ? 1 : 0,
-                                transform: visibleItems.has(index)
-                                    ? "translateY(0)"
-                                    : { xs: "translateY(10px)", sm: "translateY(30px)" },
-                                transition: "all 0.6s ease",
-                                transitionDelay: `${index * 0.1}s`,
                             }}
                         >
                             {/* Timeline Dot */}
@@ -172,7 +139,7 @@ const ExperienceSection = ({ id }) => {
                     </Typography>
                     <Box
                         component="a"
-                        href="mailto:hello@yash.dev?subject=Let's Discuss Your Experience"
+                        href="mailto:yskavinda@gmail.com?subject=Let's%20connect"
                         sx={{
                             display: "inline-flex",
                             alignItems: "center",
@@ -194,7 +161,7 @@ const ExperienceSection = ({ id }) => {
                             },
                         }}
                     >
-                        Download Resume
+                        Contact me
                     </Box>
                 </Box>
             </Container>

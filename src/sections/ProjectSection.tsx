@@ -35,34 +35,18 @@ const ProjectSection = ({id}) => {
                         Projects
                     </Typography>
                     <Typography variant="body1" textAlign="center" color="text.secondary" mb={6} maxWidth="800px" mx="auto">
-                        Scroll horizontally to explore my projects. Click on any project to see detailed information and
-                        screenshots.
+                        Selected work across mobile applications, backend systems and AI-assisted products. Open a card for the details.
                     </Typography>
 
                     <Box
                         sx={{
-                            display: "flex",
+                            display: "grid",
+                            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" },
                             gap: 3,
-                            overflowX: "auto",
-                            pb: 2,
-                            "&::-webkit-scrollbar": {
-                                height: 8,
-                            },
-                            "&::-webkit-scrollbar-track": {
-                                backgroundColor: "rgba(0,0,0,0.1)",
-                                borderRadius: 4,
-                            },
-                            "&::-webkit-scrollbar-thumb": {
-                                backgroundColor: "rgba(0,0,0,0.3)",
-                                borderRadius: 4,
-                                "&:hover": {
-                                    backgroundColor: "rgba(0,0,0,0.5)",
-                                },
-                            },
                         }}
                     >
                         {projectsData.map((project) => (
-                            <ProjectCard project={project} onClick={() => handleProjectClick(project)} />
+                            <ProjectCard key={project.id} project={project} onClick={() => handleProjectClick(project)} />
                         ))}
                     </Box>
                 </Container>
